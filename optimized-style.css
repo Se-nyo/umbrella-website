@@ -1979,3 +1979,44 @@ a:focus {
   contain-intrinsic-size: 1px 500px;
 }
 
+/* === Cross-Device Scroll Smoothness Fixes === */
+
+/* Global: Use smooth scroll and GPU acceleration */
+html {
+  scroll-behavior: smooth;
+}
+
+img, .animated-element, .step, .form-box {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* === Mobile-specific Fixes === */
+@media (max-width: 768px) {
+  /* Disable background-attachment: fixed */
+  .parallax-element,
+  .hero-section::before,
+  .how-it-works::before,
+  .mission::before,
+  .contact-wrapper::before,
+  .why-choose::before {
+    background-attachment: scroll !important;
+    will-change: auto;
+    transform: none !important;
+  }
+
+  /* Disable intense animations only on small screens */
+  .animate-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
