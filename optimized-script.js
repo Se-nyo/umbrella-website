@@ -440,19 +440,22 @@ class FormController {
   }
   
   submitForm() {
-    const submitButton = this.form.querySelector('button[type="submit"]');
-    
-    // Add loading state
-    this.addLoadingState(submitButton);
-    
-    // Simulate form submission
-    setTimeout(() => {
+  const submitButton = this.form.querySelector('button[type="submit"]');
+  this.addLoadingState(submitButton);
+
+  emailjs.sendForm('service_x13wvkh', 'template_8i0iwb2', this.form)
+    .then(() => {
       this.removeLoadingState(submitButton);
       this.showSuccessMessage();
       this.resetForm();
-    }, 2000);
-  }
-  
+    })
+    .catch((error) => {
+      this.removeLoadingState(submitButton);
+      alert('Failed to send message. Please try again.');
+      console.error('EmailJS error:', error);
+    });
+}
+
   resetForm() {
     this.form.reset();
     this.inputs.forEach(input => {
