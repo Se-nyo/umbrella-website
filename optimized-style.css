@@ -32,6 +32,26 @@
   box-sizing: border-box;
 }
 
+/* Lock appearance to light theme even if device is in dark mode */
+@media (prefers-color-scheme: dark) {
+  html, body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  * {
+    background-color: inherit !important;
+    color: inherit !important;
+    border-color: inherit !important;
+    box-shadow: inherit !important;
+  }
+
+  img, svg {
+    filter: none !important;
+  }
+}
+
+
 /* BODY - Optimized font loading and rendering */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
